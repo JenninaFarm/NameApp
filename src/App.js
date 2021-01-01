@@ -1,23 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import names from "./names.json";
+import Name from "./Name.js";
 
 function App() {
+  let namesString = JSON.stringify(names);
+  let namesObj = JSON.parse(namesString);
+  let nameList = namesObj.names.map((name) => {
+    return <Name name={name.name} amount={name.amount} />;
+  });
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>{nameList}</div>
     </div>
   );
 }
