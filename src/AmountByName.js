@@ -16,16 +16,21 @@ const AmountByName = (props) => {
   return (
     <div>
       <form onSubmit={submitName}>
-        Give a name:
+        <p className="subHeadline">Give a name:</p>
+        <br />
         <input
+          className="amountByName"
           type="text"
           placeholder="give a name"
-          onChange={(event) => setName(event.target.value)}
+          onChange={(event) => {
+            setName(event.target.value);
+            setAmount(0);
+          }}
         />
-        <input type="submit" name="Submit" />
+        <input className="amountBySubmit" type="submit" name="Submit" />
       </form>
       {!!amount && (
-        <p>
+        <p className="subHeadline">
           There is {amount} of people called {name} in the company
         </p>
       )}
