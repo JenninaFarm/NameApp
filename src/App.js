@@ -3,10 +3,16 @@ import React, { useEffect, useState } from "react";
 import names from "./names.json";
 import Order from "./Order.js";
 import Main from "./Main.js";
+import AmountByName from "./AmountByName.js";
 
 function App() {
+  console.log("here here");
   const namesString = JSON.stringify(names);
   const namesObj = JSON.parse(namesString);
+  let namesTotal = 0;
+  for (let name of namesObj.names) {
+    namesTotal += Number(name.amount);
+  }
   const [nameList, setNameList] = useState(namesObj.names);
   const [decreasingAmountOrder, setAmountOrder] = useState(true);
   const [increasingNameOrder, setNameOrder] = useState(true);
@@ -58,7 +64,8 @@ function App() {
     <div className="App">
       <Order handleClick={handleAmountOrder} by={"amount"} />
       <Order handleClick={handleNameOrder} by={"name"} />
-
+      <AmountByName names={nameList} />
+      <p>Names totally: {namesTotal}</p>
       <Main names={nameList} />
     </div>
   );
